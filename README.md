@@ -38,7 +38,8 @@ git clone https://github.com/haya14busa/incsearch-fuzzy.vim ~/.vim/bundle/incsea
 ```vim
 map z/ <Plug>(incsearch-fuzzy-/)
 map z? <Plug>(incsearch-fuzzy-?)
-map zg/ <Plug>(incsearch-fuzzy-stay)
+map zg/ <Plug>(incsearch-fuzzy-stay-/)
+map zg? <Plug>(incsearch-fuzzy-stay-?)
 ```
 
 #### fuzzyspell search
@@ -50,7 +51,8 @@ It use `spell` feature in Vim
 ```vim
 map z/ <Plug>(incsearch-fuzzyspell-/)
 map z? <Plug>(incsearch-fuzzyspell-?)
-map zg/ <Plug>(incsearch-fuzzyspell-stay)
+map zg/ <Plug>(incsearch-fuzzyspell-stay-/)
+map zg? <Plug>(incsearch-fuzzyspell-stay-?)
 ```
 
 ### API
@@ -75,7 +77,8 @@ function! s:config_fuzzyall(...) abort
   \ }), get(a:, 1, {}))
 endfunction
 
-noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
-noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
-noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
+noremap <silent><expr> z/  incsearch#go(<SID>config_fuzzyall({'command': '/'}))
+noremap <silent><expr> z?  incsearch#go(<SID>config_fuzzyall({'command': '?'}))
+noremap <silent><expr> zg/ incsearch#go(<SID>config_fuzzyall({'command': '/', 'is_stay': 1}))
+noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'command': '?', 'is_stay': 1}))
 ```
