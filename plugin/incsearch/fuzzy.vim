@@ -22,13 +22,13 @@ function! s:config_fuzzyspell(...) abort
   return incsearch#config#fuzzyspell#make(get(a:, 1, {}))
 endfunction
 
-noremap <silent><expr> <Plug>(incsearch-fuzzy-/) incsearch#go(<SID>config_fuzzy())
-noremap <silent><expr> <Plug>(incsearch-fuzzy-?) incsearch#go(<SID>config_fuzzy({'command': '?'}))
-noremap <silent><expr> <Plug>(incsearch-fuzzy-stay) incsearch#go(<SID>config_fuzzy({'is_stay': 1}))
+noremap <silent><expr> <Plug>(incsearch-fuzzy-/)      incsearch#go(<SID>config_fuzzy({'command': '/'}))
+noremap <silent><expr> <Plug>(incsearch-fuzzy-?)      incsearch#go(<SID>config_fuzzy({'command': '?'}))
+noremap <silent><expr> <Plug>(incsearch-fuzzy-stay-/) incsearch#go(<SID>config_fuzzy({'command': '/', 'is_stay': 1}))
 
-noremap <silent><expr> <Plug>(incsearch-fuzzyspell-/) incsearch#go(<SID>config_fuzzyspell())
-noremap <silent><expr> <Plug>(incsearch-fuzzyspell-?) incsearch#go(<SID>config_fuzzyspell({'command': '?'}))
-noremap <silent><expr> <Plug>(incsearch-fuzzyspell-stay) incsearch#go(<SID>config_fuzzyspell({'is_stay': 1}))
+noremap <silent><expr> <Plug>(incsearch-fuzzyspell-/)      incsearch#go(<SID>config_fuzzyspell({'command': '/'}))
+noremap <silent><expr> <Plug>(incsearch-fuzzyspell-?)      incsearch#go(<SID>config_fuzzyspell({'command': '?'}))
+noremap <silent><expr> <Plug>(incsearch-fuzzyspell-stay-/) incsearch#go(<SID>config_fuzzyspell({'command': '/', 'is_stay': 1}))
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
