@@ -29,6 +29,23 @@ function! s:fuzzy(pattern)
     return p
 endfunction
 
+let s:nonwords = join([
+\   '[:space:]',
+\ ], '')
+
+" fuzzy word --
+function! s:fuzzyword(pattern)
+    if a:pattern is# '' | return '' | endif
+    let pattern = substitute(a:pattern, s:non_escaped_backslash . '[mMvV]', '', 'g')
+    let pattern = substitute(pattern, s:escaped_backslash . '\([mMvV]\)', '\1', 'g')
+    let chars = map(split(pattern, '\zs'), "escape(v:val, '\\')")
+    let p =  '\c\V\<\?' .
+    \   join(map(chars[0:-2], "
+    \       printf('%s\\[^%s%s]\\{-}', v:val, s:nonwords, v:val)
+    \   "), '') . chars[-1]
+    return p
+endfunction
+
 " smartsign --
 let s:sign_table = {}
 let s:sign_table.us = {
