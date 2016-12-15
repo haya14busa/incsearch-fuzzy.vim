@@ -39,7 +39,7 @@ function! s:fuzzyword(pattern)
     let pattern = substitute(a:pattern, s:non_escaped_backslash . '[mMvV]', '', 'g')
     let pattern = substitute(pattern, s:escaped_backslash . '\([mMvV]\)', '\1', 'g')
     let chars = map(split(pattern, '\zs'), "escape(v:val, '\\')")
-    let p =  '\c\V\<\?' .
+    let p =  '\c\V\<\=' .
     \   join(map(chars[0:-2], "
     \       printf('%s\\[^%s%s]\\{-}', v:val, s:nonwords, v:val)
     \   "), '') . chars[-1]
