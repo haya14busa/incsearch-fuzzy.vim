@@ -7,8 +7,7 @@ scriptencoding utf-8
 let s:save_cpo = &cpo
 set cpo&vim
 
-let s:V = vital#of('incsearch_fuzzy')
-let s:C = s:V.import('Data.String.Converter')
+let s:C = vital#incsearch_fuzzy#import('Data.String.Converter')
 
 function! incsearch#config#fuzzyspell#converter() abort
   return s:C.fuzzyspell
